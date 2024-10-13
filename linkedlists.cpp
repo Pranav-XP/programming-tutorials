@@ -14,7 +14,7 @@ private:
 public:
   void insertNodeFront(int n);
   void insertNodeEnd(int n);
-  void insertNodeMiddle(int key, int n);
+  void insertNodeMiddle(int position, int n);
   void deleteNodeFront();
   void deleteNodeEnd();
   void deleteNodeMiddle(int key);
@@ -46,7 +46,25 @@ void LinkedList::insertNodeEnd(int n) {
 }
 
 // IMPLEMENT THIS.
-void LinkedList::insertNodeMiddle(int value, int n) {}
+void LinkedList::insertNodeMiddle(int position, int n) {
+  Node *newNode = new Node;
+  newNode->data = n;
+  newNode->next = nullptr;
+  if (head == nullptr) {
+    head = newNode;
+  } else if (position <= 1) {
+    delete newNode;
+    LinkedList::insertNodeFront(n);
+  } else {
+    Node *temp = head;
+    for (int i = 1; i < position - 1 && temp->next != nullptr; i++) {
+      temp = temp->next;
+    }
+    newNode->next = temp->next;
+    temp->next = newNode;
+    cout << "Address: " << newNode << " Added node: " << newNode->data << endl;
+  }
+}
 
 void LinkedList::display() {
   Node *temp = head;
@@ -100,18 +118,6 @@ int main(int argc, char *argv[]) {
   list.insertNodeEnd(54);
   list.insertNodeEnd(7);
   list.insertNodeEnd(6);
-  list.display();
-
-  // Adding to the front
-  list.insertNodeFront(89);
-  list.display();
-
-  // Deleting from the front
-  list.deleteNodeFront();
-  list.display();
-
-  // Deleting from the end
-  list.deleteNodeEnd();
   list.display();
   return 0;
 }

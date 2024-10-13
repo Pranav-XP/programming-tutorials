@@ -92,7 +92,13 @@ int main() {
 
   // Set the root of the tree
   tree.setRoot(root);
-
+  /*
+            1
+          /   \
+         2     3
+        / \   / \
+       4   5 6   7
+       */
   // Inserting nodes manually
   tree.insertLeft(root, node2);
   tree.insertRight(root, node3);
