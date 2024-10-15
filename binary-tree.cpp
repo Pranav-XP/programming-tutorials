@@ -120,5 +120,5 @@ int main() {
   tree.postorder(root); // Should print: 4 5 2 6 7 3 1
   cout << endl;
 
-  return 0;
+  system("pause");
 }
